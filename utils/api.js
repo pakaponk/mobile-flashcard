@@ -15,18 +15,18 @@ export function getDeck(title) {
 }
 
 export function saveDeckTitle(title) {
-  return AsyncStorage.mergeItem(STORAGE_KEY, {
+  return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify({
     [title]: createEmptyDeck(title)
-  })
+  }))
 }
 
 export function addCardToDeck(title, { question, answer }) {
-  return AsyncStorage.mergeItem(STORAGE_KEY, {
+  return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify({
     [title]: {
       title,
       questions: [
         { question, answer }
       ]
     }
-  })
+  }))
 }
