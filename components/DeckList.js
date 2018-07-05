@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, StyleSheet } from 'react-native'
+import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { FontAwesome } from '@expo/vector-icons'
 import { receiveDecks } from '../actions'
@@ -17,10 +17,15 @@ class DeckList extends Component {
     const unitText = `card${deck.questions.length === 1 || 's'}`
 
     return (
-      <View key={deck.title} style={styles.item}>
-        <Text style={styles.deckTitleText}>{deck.title}</Text>
-        <Text style={styles.deckSizeText}>{`${deck.questions.length} ${unitText}`}</Text>
-      </View>
+      <TouchableOpacity onPress={() => this.props.navigation.navigate(
+        'IndividualDeck',
+        { deckId: deck.title }
+      )}>
+        <View key={deck.title} style={styles.item}>
+          <Text style={styles.deckTitleText}>{deck.title}</Text>
+          <Text style={styles.deckSizeText}>{`${deck.questions.length} ${unitText}`}</Text>
+        </View>
+      </TouchableOpacity>
     )
   }
 
@@ -44,7 +49,7 @@ class DeckList extends Component {
       <FlatList
         data={data}
         keyExtractor={(item) => item.title}
-        renderItem={({ item }) => this.renderItem(item)}  
+        renderItem={({ item }) => this.renderItem(item)}
         style={styles.container}
       /> 
     )
