@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { FontAwesome } from '@expo/vector-icons'
 import { receiveDecks } from '../actions'
 import { getDecks } from '../utils/api'
-import { gray, lightGray } from '../utils/colors';
+import { gray, lightGray, white } from '../utils/colors';
 
 class DeckList extends Component {
   componentDidMount() {
@@ -30,7 +30,7 @@ class DeckList extends Component {
 
     if (data.length === 0) {
       return (
-        <View style={styles.center}>
+        <View style={[styles.container, styles.center]}>
           <FontAwesome name="frown-o" size={120} style={styles.noDataIcon} />
           <View style={styles.noDataTextContainer}>
             <Text style={styles.noDataText}>You haven't created any decks yet.</Text>
@@ -45,6 +45,7 @@ class DeckList extends Component {
         data={data}
         keyExtractor={(item) => item.title}
         renderItem={({ item }) => this.renderItem(item)}  
+        style={styles.container}
       /> 
     )
   }
@@ -59,6 +60,9 @@ export function mapStateToProps(decks) {
 export default connect(mapStateToProps)(DeckList)
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: white
+  },
   center: {
     flex: 1,
     justifyContent: 'center',
