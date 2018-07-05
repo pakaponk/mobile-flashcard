@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { FontAwesome } from '@expo/vector-icons'
 import { receiveDecks } from '../actions'
 import { getDecks } from '../utils/api'
-import { gray, lightGray, white } from '../utils/colors';
+import { gray, lightGray, white, purple } from '../utils/colors';
 
 class DeckList extends Component {
   componentDidMount() {
@@ -88,7 +88,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2
   },
   deckTitleText: {
-    fontSize: 30
+    fontSize: 30,
+    color: purple
   },
   deckSizeText: {
     fontSize: 24,

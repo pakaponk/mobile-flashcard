@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native'
-import { black, white } from '../utils/colors';
+import { black, white, purple } from '../utils/colors';
 import { addDeck } from '../actions';
 import { saveDeckTitle } from '../utils/api';
 import { createEmptyDeck } from '../utils/helpers';
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     backgroundColor: white
   },
   input: {
-    borderColor: black,
+    borderColor: purple,
     borderWidth: 2,
     borderRadius: 8, 
     marginLeft: 30,
@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   question: {
+    color: purple,
     marginTop: 75,
     margin: 30,
     justifyContent: 'center',
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
   },
   btn: {
     borderRadius: 8,
-    backgroundColor: black,
+    backgroundColor: purple,
     margin: 30,
     padding: 15,
     paddingLeft: 30,
