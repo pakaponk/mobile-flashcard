@@ -1,15 +1,23 @@
 import React from 'react';
 import { StyleSheet, View, StatusBar, Platform } from 'react-native';
 import { Constants } from 'expo'
-import { FontAwesome } from '@expo/vector-icons' 
+import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons' 
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import DeckCreate from './components/DeckCreate'
+import DeckList from './components/DeckList'
 import reducers from './reducers'
 import { purple, white } from './utils/colors'
 import { createBottomTabNavigator } from 'react-navigation'
 
 const Tabs = createBottomTabNavigator({
+  DeckList: {
+    screen: DeckList,
+    navigationOptions: {
+      tabBarLabel: 'Decks',
+      tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name="cards-playing-outline" size={30} color={tintColor} /> 
+    }
+  },
   DeckCreate: {
     screen: DeckCreate,
     navigationOptions: {
