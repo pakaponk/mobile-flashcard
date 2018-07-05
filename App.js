@@ -8,7 +8,7 @@ import DeckCreate from './components/DeckCreate'
 import DeckList from './components/DeckList'
 import reducers from './reducers'
 import { purple, white } from './utils/colors'
-import { createBottomTabNavigator } from 'react-navigation'
+import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
 
 const Tabs = createBottomTabNavigator({
   DeckList: {
@@ -45,6 +45,15 @@ const Tabs = createBottomTabNavigator({
   }
 })
 
+const MainNavigator = createStackNavigator({
+  Home: {
+    screen: Tabs,
+    navigationOptions: {
+      header: null
+    }
+  }
+})
+
 function UdaciCardStatusBar({ backgroundColor, ...props}) {
   return (
     <View style={{backgroundColor: backgroundColor, height: Constants.statusBarHeight}}>
@@ -61,7 +70,7 @@ export default class App extends React.Component {
       <Provider store={store}>
         <View style={styles.container}>
           <UdaciCardStatusBar backgroundColor={purple} barStyle="light-content" />
-          <Tabs />
+          <MainNavigator />
         </View>
       </Provider>
     );
