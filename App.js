@@ -3,9 +3,9 @@ import { StyleSheet, View, StatusBar } from 'react-native';
 import { Constants } from 'expo'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
+import DeckCreate from './components/DeckCreate'
 import reducers from './reducers'
 import { purple } from './utils/colors';
-
 
 function UdaciCardStatusBar({ backgroundColor, ...props}) {
   return (
@@ -23,6 +23,7 @@ export default class App extends React.Component {
       <Provider store={store}>
         <View style={styles.container}>
           <UdaciCardStatusBar backgroundColor={purple} barStyle="light-content" />
+          <DeckCreate />
         </View>
       </Provider>
     );
