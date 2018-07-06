@@ -15,10 +15,27 @@ class IndividualDeck extends Component {
   }
 
   toAddCard = () => {
+    const { deck } = this.props
+
     this.props.navigation.navigate(
       'AddCard',
       { 
         deckId: deck.title,
+      }
+    )
+  }
+
+  toQuiz = () => {
+    const { deck } = this.props
+
+    if (deck.questions.length === 0) {
+      return alert('Deck requires at least one card to start a quiz.')
+    }
+
+    this.props.navigation.navigate(
+      'Quiz',
+      { 
+        deckId: deck.title
       }
     )
   }
@@ -37,7 +54,9 @@ class IndividualDeck extends Component {
             onPress={this.toAddCard}
           />    
           <Button 
-            text="Start Quiz" />
+            text="Start Quiz" 
+            onPress={this.toQuiz}
+          />
         </View>
       </View>
     )

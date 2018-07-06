@@ -4,13 +4,15 @@ import { Constants } from 'expo'
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons' 
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
+import reducers from './reducers'
+import { purple, white } from './utils/colors'
+import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
+
 import DeckCreate from './components/DeckCreate'
 import DeckList from './components/DeckList'
 import IndividualDeck from './components/IndividualDeck'
 import AddCard from './components/AddCard'
-import reducers from './reducers'
-import { purple, white } from './utils/colors'
-import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
+import Quiz from './components/Quiz'
 
 const Tabs = createBottomTabNavigator({
   DeckList: {
@@ -70,6 +72,16 @@ const MainNavigator = createStackNavigator({
       headerStyle: {
         backgroundColor: purple
       }
+    }
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple
+      },
+      title: 'Quiz'
     }
   }
 })
