@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import { FontAwesome } from '@expo/vector-icons'
 import { receiveDecks } from '../actions'
 import { getDecks } from '../utils/api'
-import { gray, lightGray, white, purple } from '../utils/colors';
+import { gray, lightGray, white } from '../utils/colors';
+import DeckCard from '../components/DeckCard'
 
 class DeckList extends Component {
   componentDidMount() {
@@ -13,18 +14,15 @@ class DeckList extends Component {
   }
 
   renderItem(deck) {
-    //Add 's' when deck size != 1 
-    const unitText = `card${deck.questions.length === 1 || 's'}`
-
     return (
-      <TouchableOpacity onPress={() => this.props.navigation.navigate(
-        'IndividualDeck',
-        { deckId: deck.title }
-      )}>
-        <View key={deck.title} style={styles.item}>
-          <Text style={styles.deckTitleText}>{deck.title}</Text>
-          <Text style={styles.deckSizeText}>{`${deck.questions.length} ${unitText}`}</Text>
-        </View>
+      <TouchableOpacity 
+        style={styles.itemContainer}
+        onPress={() => this.props.navigation.navigate(
+          'IndividualDeck',
+          { deckId: deck.title }
+        )}
+      >
+        <DeckCard deck={deck} />
       </TouchableOpacity>
     )
   }
@@ -84,20 +82,8 @@ const styles = StyleSheet.create({
     color: gray,
     textAlign: 'center'
   },
-  item: {
-    paddingTop: 50,
-    paddingBottom: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
+  itemContainer: {
     borderBottomColor: lightGray,
     borderBottomWidth: 2
-  },
-  deckTitleText: {
-    fontSize: 30,
-    color: purple
-  },
-  deckSizeText: {
-    fontSize: 24,
-    color: gray
   }
 })

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
-import { gray, black, white, purple } from '../utils/colors';
-
+import { gray, white, purple } from '../utils/colors';
+import DeckCard from './DeckCard'
 
 class IndividualDeck extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -16,15 +16,9 @@ class IndividualDeck extends Component {
   render () {
     const { deck } = this.props
 
-    //Add 's' when deck size != 1 
-    const unitText = `card`
-
     return (
       <View style={styles.container}>
-        <View style={styles.item}>
-          <Text style={styles.deckTitleText}>{deck.title}</Text>
-          <Text style={styles.deckSizeText}>{`${deck.questions.length} ${unitText}`}</Text>
-        </View>
+        <DeckCard deck={deck} />
         <View>
           <TouchableOpacity 
             style={[styles.btn, {backgroundColor: white, borderColor: purple, borderWidth: 1}]}
@@ -61,19 +55,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: white,
     justifyContent: 'space-around'
-  },
-  item: {
-    paddingTop: 50,
-    paddingBottom: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  deckTitleText: {
-    fontSize: 30
-  },
-  deckSizeText: {
-    fontSize: 24,
-    color: gray
   },
   btn: {
     borderRadius: 8,
