@@ -4,6 +4,8 @@ This is the complete version of the final assessment project for Udacity's React
 
 The objective of this project is to build a mobile application (Android or iOS - or both) that allows users to study collections of flashcards. The app will allow users to create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.
 
+This application have been tested on iOS only.
+
 ## Installation
 
 1.	Clone this repository to your local machine.
