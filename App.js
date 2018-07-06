@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 import DeckCreate from './components/DeckCreate'
 import DeckList from './components/DeckList'
 import IndividualDeck from './components/IndividualDeck'
+import AddCard from './components/AddCard'
 import reducers from './reducers'
 import { purple, white } from './utils/colors'
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation'
@@ -55,6 +56,15 @@ const MainNavigator = createStackNavigator({
   },
   IndividualDeck: {
     screen: IndividualDeck,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple
+      }
+    }
+  },
+  AddCard: {
+    screen: AddCard,
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {

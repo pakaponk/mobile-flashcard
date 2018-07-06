@@ -26,7 +26,15 @@ class IndividualDeck extends Component {
           <Text style={styles.deckSizeText}>{`${deck.questions.length} ${unitText}`}</Text>
         </View>
         <View>
-          <TouchableOpacity style={[styles.btn, {backgroundColor: white, borderColor: purple, borderWidth: 1}]}>
+          <TouchableOpacity 
+            style={[styles.btn, {backgroundColor: white, borderColor: purple, borderWidth: 1}]}
+            onPress={() => this.props.navigation.navigate(
+              'AddCard',
+              { 
+                deckId: deck.title,
+              }
+            )}
+          >
             <Text style={[styles.btnText, {color: purple}]}>Add Card</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.btn}>
