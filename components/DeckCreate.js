@@ -28,6 +28,10 @@ class DeckCreate extends Component {
   
       saveDeckTitle(title)
   
+      this.setState({
+        title: ''
+      })
+
       this.props.navigation.navigate(
         'IndividualDeck',
         { 
