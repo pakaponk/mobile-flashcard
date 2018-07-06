@@ -18,18 +18,24 @@ class DeckCreate extends Component {
 
   submit = () => {
     const { title } = this.state 
-    const deck = createEmptyDeck(title)
 
-    this.props.dispatch(addDeck(deck))
+    if (title.trim().length === 0) {
+      return alert('Pleast fill the title of the deck.')
+    } else {
+      const deck = createEmptyDeck(title)
+  
+      this.props.dispatch(addDeck(deck))
+  
+      saveDeckTitle(title)
+  
+      this.props.navigation.navigate(
+        'IndividualDeck',
+        { 
+          deckId: title
+        }
+      )
+    }
 
-    saveDeckTitle(title)
-
-    this.props.navigation.navigate(
-      'IndividualDeck',
-      { 
-        deckId: title
-      }
-    )
   }
   
   render() {
@@ -42,8 +48,7 @@ class DeckCreate extends Component {
           style={styles.input} 
           value={title} 
           placeholder="Deck title" 
-          onChangeText={this.onChangeText} 
-          onSubmitEditing={this.submit}
+          onChangeText={this.onChangeText}
         />
         <Button text="Create Deck" onPress={this.submit} />
       </View>

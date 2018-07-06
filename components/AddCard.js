@@ -22,11 +22,15 @@ class AddCard extends Component {
     const { deckId } = this.props.navigation.state.params
     const { question, answer } = this.state
 
-    this.props.dispatch(addCard(deckId, { question, answer }))
-
-    addCardToDeck(deckId, { question, answer })
-
-    this.props.navigation.goBack()
+    if (question.trim().length === 0 || answer.trim().length === 0) {
+      return alert('Please fill both question and answer.')
+    } else {
+      this.props.dispatch(addCard(deckId, { question, answer }))
+  
+      addCardToDeck(deckId, { question, answer })
+  
+      this.props.navigation.goBack()
+    }
   }
 
   render() {
