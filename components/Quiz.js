@@ -13,19 +13,30 @@ class Quiz extends Component {
   state = {
     index: 0,
     score: 0,
+    isCardFlipped: false
   }
 
   selectButton = (selectedButton) => {
     if (selectedButton === 'correct') {
       this.setState((state) => ({
         index: state.index + 1,
-        score: state.score + 1
+        score: state.score + 1,
+        isCardFlipped: false
       }))
     } else {
       this.setState((state) => ({
+        ...state,
         index: state.index + 1,
+        isCardFlipped: false
       }))
     }
+  }
+
+  flip = () => {
+    this.setState((state) => ({
+      ...state,
+      isCardFlipped: !state.isCardFlipped
+    }))
   }
 
   getTotalRate() {
@@ -99,7 +110,7 @@ class Quiz extends Component {
 
   render() {
     const { deck } = this.props
-    const { index } = this.state
+    const { index, isCardFlipped } = this.state
     const card = deck.questions[index]
 
     if (index >= deck.questions.length) {
@@ -109,7 +120,7 @@ class Quiz extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.remainingText}>{`${index + 1}/${deck.questions.length}`}</Text>
-        <FlashCard card={card} />
+        <FlashCard card={card} isFlipped={isCardFlipped} flip={this.flip} />
         <View>
           <Button 
             style={{backgroundColor: red, width: 160}} 
