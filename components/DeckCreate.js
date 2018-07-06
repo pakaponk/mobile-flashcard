@@ -22,6 +22,13 @@ class DeckCreate extends Component {
     this.props.dispatch(addDeck(deck))
 
     saveDeckTitle(title)
+
+    this.props.navigation.navigate(
+      'IndividualDeck',
+      { 
+        deckId: title
+      }
+    )
   }
   
   render() {
@@ -60,6 +67,7 @@ const styles = StyleSheet.create({
     marginRight: 30,
     padding: 10,
     fontSize: 24,
+    marginBottom: 30
   },
   question: {
     color: purple,
@@ -73,7 +81,6 @@ const styles = StyleSheet.create({
   btn: {
     borderRadius: 8,
     backgroundColor: purple,
-    margin: 30,
     padding: 15,
     paddingLeft: 30,
     paddingRight: 30,
