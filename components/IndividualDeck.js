@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { white, purple } from '../utils/colors';
 import DeckCard from './DeckCard'
 import Button from './Button'
+import { setLocalNotification, clearLocalNotification } from '../utils/helpers';
 
 class IndividualDeck extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -31,6 +32,9 @@ class IndividualDeck extends Component {
     if (deck.questions.length === 0) {
       return alert('Deck requires at least one card to start a quiz.')
     }
+
+    clearLocalNotification()
+      .then(setLocalNotification)
 
     this.props.navigation.navigate(
       'Quiz',
