@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, TextInput } from 'react-native'
-import { black, white, purple } from '../utils/colors';
+import { connect } from 'react-redux'
+import { white, purple } from '../utils/colors';
 import { addDeck } from '../actions';
 import { saveDeckTitle } from '../utils/api';
 import { createEmptyDeck } from '../utils/helpers';
 
-export default class DeckCreate extends Component {
+class DeckCreate extends Component {
   state = {
     title: ''
   }
@@ -18,7 +19,7 @@ export default class DeckCreate extends Component {
     const { title } = this.state 
     const deck = createEmptyDeck(title)
 
-    addDeck(deck)
+    this.props.dispatch(addDeck(deck))
 
     saveDeckTitle(title)
   }
@@ -43,6 +44,8 @@ export default class DeckCreate extends Component {
     )
   }
 }
+
+export default connect()(DeckCreate)
 
 const styles = StyleSheet.create({
   container: {
