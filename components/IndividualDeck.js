@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { white, purple } from '../utils/colors';
 import DeckCard from './DeckCard'
+import Button from './Button'
 
 class IndividualDeck extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -12,6 +13,15 @@ class IndividualDeck extends Component {
       title: deckId
     }
   }
+
+  toAddCard = () => {
+    this.props.navigation.navigate(
+      'AddCard',
+      { 
+        deckId: deck.title,
+      }
+    )
+  }
   
   render () {
     const { deck } = this.props
@@ -20,20 +30,14 @@ class IndividualDeck extends Component {
       <View style={styles.container}>
         <DeckCard deck={deck} />
         <View>
-          <TouchableOpacity 
-            style={[styles.btn, {backgroundColor: white, borderColor: purple, borderWidth: 1}]}
-            onPress={() => this.props.navigation.navigate(
-              'AddCard',
-              { 
-                deckId: deck.title,
-              }
-            )}
-          >
-            <Text style={[styles.btnText, {color: purple}]}>Add Card</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.btn}>
-            <Text style={styles.btnText}>Start Quiz</Text>
-          </TouchableOpacity>
+          <Button 
+            style={{backgroundColor: white, borderColor: purple, borderWidth: 1}}
+            textColor={purple}
+            text="Add Card"
+            onPress={this.toAddCard}
+          />    
+          <Button 
+            text="Start Quiz" />
         </View>
       </View>
     )
@@ -55,19 +59,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: white,
     justifyContent: 'space-around'
-  },
-  btn: {
-    borderRadius: 8,
-    backgroundColor: purple,
-    marginBottom: 15,
-    padding: 15,
-    paddingLeft: 30,
-    paddingRight: 30,
-    alignItems: 'center',
-    alignSelf: 'center'
-  },
-  btnText: {
-    color: white, 
-    fontSize: 24
   }
 })

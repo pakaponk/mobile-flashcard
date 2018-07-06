@@ -5,6 +5,7 @@ import { white, purple } from '../utils/colors';
 import { addDeck } from '../actions';
 import { saveDeckTitle } from '../utils/api';
 import { createEmptyDeck } from '../utils/helpers';
+import Button from './Button'
 
 class DeckCreate extends Component {
   state = {
@@ -44,9 +45,7 @@ class DeckCreate extends Component {
           onChangeText={this.onChangeText} 
           onSubmitEditing={this.submit}
         />
-        <TouchableOpacity style={styles.btn} onPress={this.submit}>
-            <Text style={styles.btnText}>Submit</Text>
-        </TouchableOpacity>
+        <Button text="Create Deck" onPress={this.submit} />
       </View>
     )
   }
@@ -77,19 +76,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     fontSize: 30,
     textAlign: 'center'
-  },
-  btn: {
-    borderRadius: 8,
-    backgroundColor: purple,
-    padding: 15,
-    paddingLeft: 30,
-    paddingRight: 30,
-    alignItems: 'center',
-    alignSelf: 'center'
-  },
-  btnText: {
-    color: white, 
-    fontSize: 24
   }
 })
 
